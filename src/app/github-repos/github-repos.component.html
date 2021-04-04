@@ -1,0 +1,15 @@
+<div class="card" *ngIf="userRepos.length>0">
+    <div class="card-header bg-light text-white">
+        <h4>Github Repositories</h4>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let repo of userRepos">
+                    <a [href]="repo?.html_url" class="text-primary font-weight-bold"  target="_blank">{{repo?.name}}</a>
+                    <span class="badge badge-success">{{repo?.stargazers_count}} stars</span>
+                    <span class="badge badge-warning">{{repo?.watchers_count}} stars</span>
+                    <a (click)="onRedirect(repo.name,repo.owner.login)" class="text-primary">Go To Commit</a>
+            </li>
+        </ul>
+    </div>
+</div>

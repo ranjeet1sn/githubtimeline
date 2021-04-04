@@ -1,0 +1,6 @@
+.upper-div{
+    display: flex;
+}
+input{
+    width: fit-content;
+}

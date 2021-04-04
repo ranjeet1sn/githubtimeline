@@ -1,0 +1,37 @@
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+    </ol>
+  </nav>
+<div class="container" *ngIf="commits.length>0">
+    <div class="page-header">
+        <h4 id="timeline">Commit Timeline</h4>
+    </div>
+    <ul class="timeline" *ngFor="let commit of commits;let i=index">
+        <li *ngIf="i%2==0">
+          <div class="timeline-badge"></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{commit.commit.message}}</h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{commit.commit.author.date|date}}</small></p>
+            </div>
+            <div class="timeline-body">
+           <a [href]="commit.html_url" target="_blank">Go to Commit</a>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted" *ngIf="i%2!=0">
+          <div class="timeline-badge"></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{commit.commit.message}}</h4>
+                            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{commit.commit.author.date|date}}</small></p>
+            </div>
+            <div class="timeline-body">
+                <a [href]="commit.html_url" target="_blank">Go to Commit</a>
+            </div>
+          </div>
+        </li>
+    </ul>
+</div>

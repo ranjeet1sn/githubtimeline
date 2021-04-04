@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand">
+        <p class="cursor" routerLink="/home">Githubtimeline</p>
+        </a>
+    <div  id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li  class=" cursor nav-item active" *ngIf="!isAuthenticated">
+          <a class="nav-link" routeerLink="/login">Login</a>
+        </li>
+        <li class=" cursor nav-item active" *ngIf="isAuthenticated">
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

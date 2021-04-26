@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { CommitTimelineComponent } from './commit-timeline/commit-timeline.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -11,11 +12,13 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate:[AuthGuard]
   }, 
   {
     path:'commit',
-    component:CommitTimelineComponent
+    component:CommitTimelineComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: '',

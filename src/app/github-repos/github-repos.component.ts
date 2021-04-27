@@ -13,7 +13,6 @@ export class GithubReposComponent implements OnInit {
   ngOnInit(): void {
   }
   onRedirect(repo,name){
-    console.log(repo,name);
     this.router.navigate(['/commit'],{queryParams:{name:name,repo:repo}})
   }
 }

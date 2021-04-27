@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
 import { GithubService } from '../services/github.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { GithubService } from '../services/github.service';
 })
 export class CommitTimelineComponent implements OnInit {
   commits: any = [];
+  isShow = false;
+  subscription:Subscription[] =[];
   constructor(
     private route: ActivatedRoute,
     private githubService: GithubService,
@@ -26,14 +29,18 @@ export class CommitTimelineComponent implements OnInit {
       if (Object.keys(res).length > 0) {
         this.githubService.getRepoCommit(res['name'], res['repo']).subscribe(res => {
           this.commits = res;
+          this.isShow = true;
         },
         (error=>{
-          console.log(error);
-          
-        })
-        )
+          this.isShow =true;
+        }));
       }
     })
   }
+  ngOnDestroy() {
+    this.subscription.forEach(subscription=>subscription.unsubscribe());
+    this.isShow =false
+ }
+
 
 }

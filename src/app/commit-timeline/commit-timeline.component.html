@@ -36,6 +36,6 @@
     </ul>
 </div>
 <ng-template #nocommit>
-  <p class="empty-div">No Commit Found</p>
+  <p class="empty-div" *ngIf="isShow">No Commit Found</p>
 </ng-template>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "timer" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.authService.signOut().then().catch(error=>{  });
   }
 
   getAuthState() {

@@ -19,7 +19,7 @@ import { ProfileDataComponent } from './profile-data/profile-data.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommitTimelineComponent } from './commit-timeline/commit-timeline.component';
-import { ErrorInterceptor } from './error.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component'

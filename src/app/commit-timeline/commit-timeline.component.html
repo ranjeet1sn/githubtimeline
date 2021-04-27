@@ -4,7 +4,7 @@
       <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
     </ol>
   </nav>
-<div class="container" *ngIf="commits.length>0">
+<div class="container" *ngIf="commits.length>0;else nocommit">
     <div class="page-header">
         <h4 id="timeline">Commit Timeline</h4>
     </div>
@@ -35,4 +35,7 @@
         </li>
     </ul>
 </div>
+<ng-template #nocommit>
+  <p class="empty-div">No Commit Found</p>
+</ng-template>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "timer" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

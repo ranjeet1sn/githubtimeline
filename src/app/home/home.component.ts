@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const name = localStorage.getItem('name');
     if (name) {
-      this.userName =name;
+      this.userName = name;
       this.onGetProfile(name);
     }
   }
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.spinner.hide();
     }, 1000)
     this.subscription.push(this.githubService.getProfileDetail(this.userName).subscribe(res => {
-      this.userProfile = res
+      this.userProfile = res;
     }));
     this.subscription.push(this.githubService.getRepoDetails(this.userName).subscribe(res => {
       this.userRepos = res;
@@ -44,6 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+     this.subscription.forEach(subscription=>subscription.unsubscribe())
   }
 }

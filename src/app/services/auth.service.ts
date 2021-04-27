@@ -75,7 +75,7 @@ export class AuthService {
       this.setAuthTime(isFuture / 1000);
       this.isAuthenticated = true;
       this.isAuthenticate.next(true)
-      this.router.navigate(['/home']);
+      // this.router.navigate(['/home']);
     }
     else {
       this.onLogout();

@@ -26,7 +26,12 @@ export class CommitTimelineComponent implements OnInit {
       if (Object.keys(res).length > 0) {
         this.githubService.getRepoCommit(res['name'], res['repo']).subscribe(res => {
           this.commits = res;
+        },
+        (error=>{
+          console.log(error);
+          
         })
+        )
       }
     })
   }

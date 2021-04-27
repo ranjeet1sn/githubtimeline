@@ -271,3 +271,9 @@ h1{
 .timeline-body > p + p {
  margin-top: 5px;
 }
+
+.empty-div{
+  text-align: center;
+    font-weight: 500;
+    font-size: 20px
+}

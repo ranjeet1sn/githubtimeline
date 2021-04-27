@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {
   GoogleLoginProvider,
 } from 'angularx-social-login';
@@ -19,6 +19,10 @@ import { ProfileDataComponent } from './profile-data/profile-data.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommitTimelineComponent } from './commit-timeline/commit-timeline.component';
+import { ErrorInterceptor } from './error.interceptor';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +32,8 @@ import { CommitTimelineComponent } from './commit-timeline/commit-timeline.compo
     GithubReposComponent,
     ProfileCardComponent,
     ProfileDataComponent,
-    CommitTimelineComponent
+    CommitTimelineComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,9 @@ import { CommitTimelineComponent } from './commit-timeline/commit-timeline.compo
     HttpClientModule,
     FormsModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -52,9 +59,14 @@ import { CommitTimelineComponent } from './commit-timeline/commit-timeline.compo
         ]
       } as SocialAuthServiceConfig,
     },
-    AuthService
+    AuthService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorInterceptor,
+      multi:true
+    }
   ],
-
+  entryComponents:[ErrorDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

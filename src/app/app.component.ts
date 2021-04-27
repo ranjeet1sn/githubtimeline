@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -6,9 +6,12 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit ,AfterViewInit{
   isAuthenticated = false;
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private cdr:ChangeDetectorRef
+    ) { }
 
   ngOnInit() {
     this.authService.autoAuthUser();
@@ -25,6 +28,12 @@ export class AppComponent implements OnInit {
 
   }
   onLogout() {
-    this.authService.onLogout();
+    setTimeout(()=>{
+      this.authService.onLogout();      
+    },2000)
+
+  }
+  ngAfterViewInit(){
+    this.cdr.detectChanges();
   }
 }
